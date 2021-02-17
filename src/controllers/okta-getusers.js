@@ -10,13 +10,11 @@ const oktaUserService = require("../service/Okta-service");
  * @param {*} req the HTTP Request Object
  * @param {*} res the HTTP Response Object
  */
-const getOktaLoginUser = (req, res) => {
+const getUserOkta = (req, res) => {
   const username = req.body.username;
-  const pwd = req.body.password;
 
   let postData = JSON.stringify({
     username: username,
-    password: pwd,
     options: {
       multiOptionalFactorEnroll: false,
       warnBeforePasswordExpired: false
@@ -29,7 +27,7 @@ const getOktaLoginUser = (req, res) => {
   );
 
   
-    oktaUserService.getOktaLoginUser(postData)
+    oktaUserService.getUserOkta(postData)
       .then(result => {
         
         let getOktaUserJsonResponse = JSON.parse(result);
@@ -68,5 +66,5 @@ const getOktaLoginUser = (req, res) => {
 };
 
 module.exports = {
-  getOktaLoginUser
+  getUserOkta
 };

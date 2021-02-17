@@ -13,7 +13,7 @@ const router = express.Router();
 // Router for the login with credentials  API.
 router.post(
   "/" + constants.AUTHN_SERVICE_URI,
-  authentication.getOktaLoginUser
+  authentication.getUserOkta
 );
 
 // Exports the routes to make accessible to other files in project
