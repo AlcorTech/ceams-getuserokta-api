@@ -13,16 +13,18 @@ const https = require("https");
 /**
  *takes the body alone passed from controller
  */
-const getUserOkta = (postData) => {
+const changePassword = (userName, postData) => {
   let authnLoginLogMsg = "Inside the OKTA service : ";
 
-  logger.log(LoggingLevels.INFO, authnLoginLogMsg);
+  //logger.log(LoggingLevels.INFO, authnLoginLogMsg);
 
   let hostname = config.OKTA_API_HOSTNAME;
-  let path = config.OKTA_GETUSER_API_PATH;
-  
+  let path =
+    config.OKTA_CHANGEPASSWORD_API_PATH +
+    userName
+   // "/credentials/change_password";
 
-  logger.log(LoggingLevels.INFO, requestLogMsg + " " + hostname + path);
+  // logger.log(LoggingLevels.INFO, authnLoginLogMsg + " " + hostname + path);
 
   // Set the Header Authorization option to the Okta API Token
   let authorization =
@@ -32,24 +34,24 @@ const getUserOkta = (postData) => {
   var options = {
     hostname: `${hostname}`,
     path: `${path}`,
-    method: "POST",
+    method: "GET",
     headers: {
       Authorization: authorization,
       "Content-Type": "application/json",
-      "Content-Length": postData.length
+      "Content-Length": postData.length,
     },
     rejectUnauthorized: false,
     requestCert: true,
-    agent: false
+    agent: false,
   };
 
-  return new Promise(function(resolve, reject) {
-    var httpsReq = https.request(options, response => {
+  return new Promise(function (resolve, reject) {
+    var httpsReq = https.request(options, (response) => {
       var result = "";
-      response.on("data", function(chunk) {
+      response.on("data", function (chunk) {
         result += chunk;
       });
-      response.on("end", function() {
+      response.on("end", function () {
         resolve(result);
         logger.log(
           LoggingLevels.INFO,
@@ -58,7 +60,7 @@ const getUserOkta = (postData) => {
             response.statusCode
         );
       });
-      response.on("error", function(err) {
+      response.on("error", function (err) {
         reject(err);
         logger.log(
           LoggingLevels.ERROR,
@@ -72,5 +74,5 @@ const getUserOkta = (postData) => {
 };
 
 module.exports = {
-  getUserOkta
+  changePassword,
 };

@@ -4,10 +4,10 @@
  */
 module.exports = Object.freeze({
   /** Name of the Authenticate Service API */
-  API_NAME: 'authenticationService',
+  API_NAME: 'getUserDetails',
 
   /** Default Express Server Port */
-  EXPRESS_SERVER_PORT_DEFAULT: 3000,
+  EXPRESS_SERVER_PORT_DEFAULT: 3033,
 
  
 
@@ -45,9 +45,8 @@ module.exports = Object.freeze({
   OKTA_HTTP_AUTHORIZATION_SCHEMA_TYPE: 'SSWS',
 
    /**encountered 403 */
-   ERRAUTH001: 'ERRAUTH001',
+   ERRPASS001: 'ERRPASS001',
    
-
   
 CEAMS_GENERIC_ERROR_TEXT : 'An unexpected error has occurred. Please contact your help desk with the errorcode :',
 // ###########################################################################
