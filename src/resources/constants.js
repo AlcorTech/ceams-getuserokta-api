@@ -56,6 +56,12 @@ CEAMS_GENERIC_ERROR_TEXT : 'An unexpected error has occurred. Please contact you
   /** Message to render for successful Health Check */
   HEALTH_CHECK_MESSAGE: 'The CEAMS Authentication API is running...',
 
+  AUTH_SUCCESS: {
+    errorCode: "CEAMS-AUTHN-SUCCESS-1005",
+    errorMessage: "user Authn success",
+    errorSummary:'User credentails authentication success :',
+    status: true
+  },
 
   /** Error message to display if error occurs in Okta Seach User */
   ERROR_MESSAGE_OKTA_LIST_USER_WITH_SEARCH_SERVICE:
@@ -63,3 +69,5 @@ CEAMS_GENERIC_ERROR_TEXT : 'An unexpected error has occurred. Please contact you
     + 'Okta List Users with Search API',
   
 });
+
+

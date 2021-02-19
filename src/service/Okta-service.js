@@ -13,14 +13,14 @@ const https = require("https");
 /**
  *takes the body alone passed from controller
  */
-const changePassword = (userName, postData) => {
+const getUserDetails = (userName, postData) => {
   let authnLoginLogMsg = "Inside the OKTA service : ";
 
   //logger.log(LoggingLevels.INFO, authnLoginLogMsg);
 
   let hostname = config.OKTA_API_HOSTNAME;
   let path =
-    config.OKTA_CHANGEPASSWORD_API_PATH +
+    config.OKTA_getUserDetails_API_PATH +
     userName
    // "/credentials/change_password";
 
@@ -74,5 +74,5 @@ const changePassword = (userName, postData) => {
 };
 
 module.exports = {
-  changePassword,
+  getUserDetails,
 };

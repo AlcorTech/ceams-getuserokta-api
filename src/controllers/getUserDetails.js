@@ -25,16 +25,21 @@ const getUserDetails = (req, res) => {
   );
 
   oktaUserService
-    .changePassword(userName, postData)
+    .getUserDetails(userName, postData)
     .then((result) => {
-      let changePasswordJsonResponse = JSON.parse(result);
-      console.log(changePasswordJsonResponse);
-
+      let getUsersJsonResponse = JSON.parse(result);
+      let getUserResponse ={
+        lastlogintime: getUsersJsonResponse.lastLogin,
+        userFullName: getUsersJsonResponse.profile.lastName+ "," +
+        getUsersJsonResponse.profile.firstName,
+        userId: getUsersJsonResponse.profile.login
+      }
+      console.log(getUserResponse)
       logger.log(
         LoggingLevels.TRACE,
         "determine if the Okta User Results Array contains at least one user..."
       );
-      res.json(changePasswordJsonResponse);
+      res.json(getUserResponse);
     })
     // Catch the error message when calling the Okta List Users with Search
     // API
