@@ -55,7 +55,7 @@ const changePassword = (userName, postData) => {
         resolve(result);
         logger.log(
           LoggingLevels.INFO,
-          "received JSON response from Okta Authn " +
+          "received JSON response from Okta sd  Authn " +
             "with statusCode: " +
             response.statusCode
         );

@@ -6,10 +6,10 @@
 
 const express = require("express");
 const constants = require("../resources/constants");
-const changePassword = require("../controllers/changepassword");
+const getUserDetails = require("../controllers/getUserDetails");
 
 const router = express.Router();
 
-router.get("/getusers", changePassword.changePassword);
+router.get("/getusers", getUserDetails.getUserDetails);
 // Exports the routes to make accessible to other files in project
 module.exports = router;

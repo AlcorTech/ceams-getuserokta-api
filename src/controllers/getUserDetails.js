@@ -9,7 +9,7 @@ const oktaUserService = require("../service/Okta-service");
  * @param {*} req the HTTP Request Object
  * @param {*} res the HTTP Response Object
  */
-const changePassword = (req, res) => {
+const getUserDetails = (req, res) => {
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
   const userName = req.body.userName;
@@ -60,5 +60,5 @@ const changePassword = (req, res) => {
 };
 
 module.exports = {
-  changePassword,
+  getUserDetails,
 };

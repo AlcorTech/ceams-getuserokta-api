@@ -31,7 +31,7 @@ const getUserOkta = (req, res) => {
       .then(result => {
         
         let getOktaUserJsonResponse = JSON.parse(result);
-        console.log(getOktaUserJsonResponse)
+        console.log()
     
         logger.log(
           LoggingLevels.TRACE,
