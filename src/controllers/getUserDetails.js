@@ -1,3 +1,4 @@
+const { default: xPermittedCrossDomainPolicies } = require("helmet/dist/middlewares/x-permitted-cross-domain-policies");
 const { logger, LoggingLevels } = require("../../config/winston");
 const constants = require("../resources/constants");
 const oktaUserService = require("../service/Okta-service");
@@ -26,7 +27,7 @@ const getUserDetails = (req, res) => {
 
   oktaUserService
     .getUserDetails(userName, postData)
-    .then((result) => {
+    .then((result) => { 
       let getUsersJsonResponse = JSON.parse(result);
       let getUserResponse ={
         lastlogintime: getUsersJsonResponse.lastLogin,
@@ -34,12 +35,25 @@ const getUserDetails = (req, res) => {
         getUsersJsonResponse.profile.firstName,
         userId: getUsersJsonResponse.profile.login
       }
-      console.log(getUserResponse)
+
+      let errorResponse = { 
+          "errorCode": "ERRPASS001",
+          "statusText": "Error in OKTA call Authn"
+      }
+      console.log(getUsersJsonResponse)
       logger.log(
         LoggingLevels.TRACE,
         "determine if the Okta User Results Array contains at least one user..."
       );
-      res.json(getUserResponse);
+      if(getUsersJsonResponse.status === 'ACTIVE'){
+        console.log (LoggingLevels.INFO,"success");
+        res.json(getUserResponse);
+      }
+      else {
+        console.log (LoggingLevels.INFO,"success");
+        res.json(errorResponse);
+      }
+  
     })
     // Catch the error message when calling the Okta List Users with Search
     // API
