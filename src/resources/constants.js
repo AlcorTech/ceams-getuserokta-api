@@ -60,7 +60,6 @@ CEAMS_GENERIC_ERROR_TEXT : 'An unexpected error has occurred. Please contact you
     errorMessage: "User not active",
     errorSummary:'User name provided is not active ',
     status: false
-
   },
 
   USER_NOT_FOUND_ERROR: {
@@ -70,6 +69,12 @@ CEAMS_GENERIC_ERROR_TEXT : 'An unexpected error has occurred. Please contact you
     status: false
   },
 
+  LOCKED_OUT_ERROR:{
+    errorCode: "CEAMS-USER-1003",
+    errorMessage: "User is locked out",
+    errorSummary:'User is locked out of the system',
+    status: false
+  },
 
   /** Error message to display if error occurs in Okta Seach User */
   ERROR_MESSAGE_OKTA_LIST_USER_WITH_SEARCH_SERVICE:

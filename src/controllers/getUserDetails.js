@@ -1,4 +1,6 @@
-const { default: xPermittedCrossDomainPolicies } = require("helmet/dist/middlewares/x-permitted-cross-domain-policies");
+const {
+  default: xPermittedCrossDomainPolicies,
+} = require("helmet/dist/middlewares/x-permitted-cross-domain-policies");
 const { logger, LoggingLevels } = require("../../config/winston");
 const constants = require("../resources/constants");
 
@@ -28,26 +30,31 @@ const getUserDetails = (req, res) => {
 
   oktaUserService
     .getUserDetails(userName, postData)
-    .then((result) => { 
+    .then((result) => {
       let getUsersJsonResponse = JSON.parse(result);
-      let getUserResponse ={
+      let getUserResponse = {
         lastlogintime: getUsersJsonResponse.lastLogin,
-        userFullName: getUsersJsonResponse.profile.lastName+ "," +
-        getUsersJsonResponse.profile.firstName,
-        userId: getUsersJsonResponse.profile.login
-      }
+        userFullName:
+          getUsersJsonResponse.profile.lastName +
+          "," +
+          getUsersJsonResponse.profile.firstName,
+        userId: getUsersJsonResponse.profile.login,
+      };
 
-      console.log(getUsersJsonResponse)
+      console.log(getUsersJsonResponse);
       logger.log(
         LoggingLevels.TRACE,
         "determine if the Okta User Results Array contains at least one user..."
       );
-      if(getUsersJsonResponse.status === 'ACTIVE'){
-        console.log (LoggingLevels.INFO,"success");
+      if (getUsersJsonResponse.status === "ACTIVE") {
+        console.log(LoggingLevels.INFO, "success");
         res.json(getUserResponse);
       }
-      else{
-        console.log (LoggingLevels.INFO,"In active user");
+      if (getUsersJsonResponse.status === "LOCKED_OUT") {
+        console.log(LoggingLevels.INFO, "Locked out");
+        res.json(constants.LOCKED_OUT_ERROR);
+      } else {
+        console.log(LoggingLevels.INFO, "In active user");
         res.json(constants.USER_NOT_ACTIVE_ERROR);
       }
     })
@@ -66,7 +73,7 @@ const getUserDetails = (req, res) => {
       // Response back to calling client, general error message returned in
       // response; the details of error are recoded in app logs.
       res.status(constants.HTTP_STATUS_CODE_SERVER_ERROR);
-      res.json(constants.USER_NOT_FOUND_ERROR)
+      res.json(constants.USER_NOT_FOUND_ERROR);
     });
 };
 
