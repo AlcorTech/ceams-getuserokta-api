@@ -55,13 +55,21 @@ CEAMS_GENERIC_ERROR_TEXT : 'An unexpected error has occurred. Please contact you
 
   /** Message to render for successful Health Check */
   HEALTH_CHECK_MESSAGE: 'The CEAMS Authentication API is running...',
+  USER_NOT_ACTIVE_ERROR:{
+    errorCode: "CEAMS-USER-1001",
+    errorMessage: "User not active",
+    errorSummary:'User name provided is not active ',
+    status: false
 
-  AUTH_SUCCESS: {
-    errorCode: "CEAMS-AUTHN-SUCCESS-1005",
-    errorMessage: "user Authn success",
-    errorSummary:'User credentails authentication success :',
-    status: true
   },
+
+  USER_NOT_FOUND_ERROR: {
+    errorCode: "CEAMS-USER-1002",
+    errorMessage: "User not found",
+    errorSummary:'User name provided is not valid ',
+    status: false
+  },
+
 
   /** Error message to display if error occurs in Okta Seach User */
   ERROR_MESSAGE_OKTA_LIST_USER_WITH_SEARCH_SERVICE:

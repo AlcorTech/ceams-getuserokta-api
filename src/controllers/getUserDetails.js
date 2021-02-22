@@ -1,6 +1,7 @@
 const { default: xPermittedCrossDomainPolicies } = require("helmet/dist/middlewares/x-permitted-cross-domain-policies");
 const { logger, LoggingLevels } = require("../../config/winston");
 const constants = require("../resources/constants");
+
 const oktaUserService = require("../service/Okta-service");
 
 /**
@@ -36,10 +37,6 @@ const getUserDetails = (req, res) => {
         userId: getUsersJsonResponse.profile.login
       }
 
-      let errorResponse = { 
-          "errorCode": "ERRPASS001",
-          "statusText": "Error in OKTA call Authn"
-      }
       console.log(getUsersJsonResponse)
       logger.log(
         LoggingLevels.TRACE,
@@ -49,11 +46,10 @@ const getUserDetails = (req, res) => {
         console.log (LoggingLevels.INFO,"success");
         res.json(getUserResponse);
       }
-      else {
-        console.log (LoggingLevels.INFO,"success");
-        res.json(errorResponse);
+      else{
+        console.log (LoggingLevels.INFO,"In active user");
+        res.json(constants.USER_NOT_ACTIVE_ERROR);
       }
-  
     })
     // Catch the error message when calling the Okta List Users with Search
     // API
@@ -70,11 +66,7 @@ const getUserDetails = (req, res) => {
       // Response back to calling client, general error message returned in
       // response; the details of error are recoded in app logs.
       res.status(constants.HTTP_STATUS_CODE_SERVER_ERROR);
-      res.json({
-        ok: false,
-        errorCode: constants.ERRPASS001,
-        statusText: "Error in OKTA call Authn",
-      });
+      res.json(constants.USER_NOT_FOUND_ERROR)
     });
 };
 
