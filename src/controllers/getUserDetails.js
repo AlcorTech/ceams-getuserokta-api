@@ -39,6 +39,7 @@ const getUserDetails = (req, res) => {
           "," +
           getUsersJsonResponse.profile.firstName,
         userId: getUsersJsonResponse.profile.login,
+        status: true,
       };
 
       console.log(getUsersJsonResponse);
@@ -63,6 +64,10 @@ const getUserDetails = (req, res) => {
         res.json(constants.USER_NOT_ACTIVE_ERROR);
       }
       if (getUsersJsonResponse.status === "PASSWORD_EXPIRED") {
+        console.log(LoggingLevels.INFO, "In active user");
+        res.json(constants.USER_PASSWORD_EXPIRY_ERROR);
+      }
+      if (getUsersJsonResponse.status === "RECOVERY") {
         console.log(LoggingLevels.INFO, "In active user");
         res.json(constants.USER_PASSWORD_EXPIRY_ERROR);
       }
