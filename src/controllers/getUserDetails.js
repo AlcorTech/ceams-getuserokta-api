@@ -53,9 +53,18 @@ const getUserDetails = (req, res) => {
       if (getUsersJsonResponse.status === "LOCKED_OUT") {
         console.log(LoggingLevels.INFO, "Locked out");
         res.json(constants.LOCKED_OUT_ERROR);
-      } else {
+      }
+      if (getUsersJsonResponse.status === "DEPROVISIONED") {
+        console.log(LoggingLevels.INFO, "In active user");
+        res.json(constants.USER_DEACTIVATED_ERROR);
+      }
+      if (getUsersJsonResponse.status === "SUSPENDED") {
         console.log(LoggingLevels.INFO, "In active user");
         res.json(constants.USER_NOT_ACTIVE_ERROR);
+      }
+      if (getUsersJsonResponse.status === "PASSWORD_EXPIRED") {
+        console.log(LoggingLevels.INFO, "In active user");
+        res.json(constants.USER_PASSWORD_EXPIRY_ERROR);
       }
     })
     // Catch the error message when calling the Okta List Users with Search

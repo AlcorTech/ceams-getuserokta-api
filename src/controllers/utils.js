@@ -100,5 +100,5 @@ function isJsonArrayEmpty(jsonArrayName, jsonArray) {
 
 module.exports = {
   isJsonAttributeDefined,
-  isJsonArrayEmpty
+  isJsonArrayEmpty,
 };

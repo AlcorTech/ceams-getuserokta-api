@@ -19,10 +19,8 @@ const getUserDetails = (userName, postData) => {
   //logger.log(LoggingLevels.INFO, authnLoginLogMsg);
 
   let hostname = config.OKTA_API_HOSTNAME;
-  let path =
-    config.OKTA_getUserDetails_API_PATH +
-    userName
-   // "/credentials/change_password";
+  let path = config.OKTA_getUserDetails_API_PATH + userName;
+  // "/credentials/change_password";
 
   // logger.log(LoggingLevels.INFO, authnLoginLogMsg + " " + hostname + path);
 
