@@ -11,7 +11,7 @@ const updateOktaProfile = require("../controllers/updateOktaProfile");
 
 const router = express.Router();
 
-router.get("/getOktaProfile", getUserDetails.getUserDetails);
-router.post("/updateOktaProfile", updateOktaProfile.updateOktaProfile);
+router.get("/getProfile", getUserDetails.getUserDetails);
+router.post("/updateProfile", updateOktaProfile.updateOktaProfile);
 // Exports the routes to make accessible to other files in project
 module.exports = router;
