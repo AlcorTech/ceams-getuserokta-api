@@ -4,7 +4,7 @@
  */
 module.exports = Object.freeze({
   /** Name of the Authenticate Service API */
-  API_NAME: "getUserDetails",
+  API_NAME: "login",
 
   /** Default Express Server Port */
   EXPRESS_SERVER_PORT_DEFAULT: 3033,

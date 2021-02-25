@@ -39,6 +39,7 @@ const getUserDetails = (req, res) => {
           "," +
           getUsersJsonResponse.profile.firstName,
         userId: getUsersJsonResponse.profile.login,
+        passwordChanged:getUsersJsonResponse.passwordChanged,
         status: true,
       };
 

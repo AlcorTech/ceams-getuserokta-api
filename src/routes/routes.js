@@ -7,9 +7,11 @@
 const express = require("express");
 const constants = require("../resources/constants");
 const getUserDetails = require("../controllers/getUserDetails");
+const updateOktaProfile = require("../controllers/updateOktaProfile");
 
 const router = express.Router();
 
-router.get("/getusers", getUserDetails.getUserDetails);
+router.get("/getOktaProfile", getUserDetails.getUserDetails);
+router.post("/updateOktaProfile", updateOktaProfile.updateOktaProfile);
 // Exports the routes to make accessible to other files in project
 module.exports = router;
