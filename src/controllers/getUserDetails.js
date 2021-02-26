@@ -24,7 +24,7 @@ const getUserDetails = (req, res) => {
   });
 
   logger.log(
-    LoggingLevels.TRACE,
+    LoggingLevels.INFO,
     "Responding to a request for the /Authn API path....."
   );
 
@@ -42,34 +42,32 @@ const getUserDetails = (req, res) => {
         passwordChanged:getUsersJsonResponse.passwordChanged,
         status: true,
       };
-
-      console.log(getUsersJsonResponse);
       logger.log(
-        LoggingLevels.TRACE,
+        LoggingLevels.INFO,
         "determine if the Okta User Results Array contains at least one user..."
       );
       if (getUsersJsonResponse.status === "ACTIVE") {
-        console.log(LoggingLevels.INFO, "success");
+        logger.log(LoggingLevels.INFO, "success");
         res.json(getUserResponse);
       }
       if (getUsersJsonResponse.status === "LOCKED_OUT") {
-        console.log(LoggingLevels.INFO, "Locked out");
+        logger.log(LoggingLevels.INFO, "Locked out");
         res.json(constants.LOCKED_OUT_ERROR);
       }
       if (getUsersJsonResponse.status === "DEPROVISIONED") {
-        console.log(LoggingLevels.INFO, "In active user");
+        logger.log(LoggingLevels.INFO, "In active user");
         res.json(constants.USER_DEACTIVATED_ERROR);
       }
       if (getUsersJsonResponse.status === "SUSPENDED") {
-        console.log(LoggingLevels.INFO, "In active user");
+        logger.log(LoggingLevels.INFO, "In active user");
         res.json(constants.USER_NOT_ACTIVE_ERROR);
       }
       if (getUsersJsonResponse.status === "PASSWORD_EXPIRED") {
-        console.log(LoggingLevels.INFO, "In active user");
+        logger.log(LoggingLevels.INFO, "In active user");
         res.json(constants.USER_PASSWORD_EXPIRY_ERROR);
       }
       if (getUsersJsonResponse.status === "RECOVERY") {
-        console.log(LoggingLevels.INFO, "In active user");
+        logger.log(LoggingLevels.INFO, "In active user");
         res.json(constants.USER_PASSWORD_EXPIRY_ERROR);
       }
     })

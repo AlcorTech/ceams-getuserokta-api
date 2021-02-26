@@ -22,7 +22,7 @@ const updateOktaProfile = (req, res) => {
   })
 
   logger.log(
-    LoggingLevels.TRACE,
+    LoggingLevels.INFO,
     "Responding to a request for the /Authn API path....."
   );
 
@@ -32,10 +32,8 @@ const updateOktaProfile = (req, res) => {
 
       let getUsersJsonResponse = JSON.parse(result);
     res.json(getUsersJsonResponse);
-    console.log(result);
-      console.log(getUsersJsonResponse);
       logger.log(
-        LoggingLevels.TRACE,
+        LoggingLevels.INFO,
         "determine if the Okta User Results Array contains at least one user..."
       );
     })

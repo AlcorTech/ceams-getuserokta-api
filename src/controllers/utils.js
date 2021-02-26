@@ -27,7 +27,7 @@ function isJsonAttributeDefined(jsonAttributeName, jsonAttribute) {
   }
 
   logger.log(
-    LoggingLevels.TRACE,
+    LoggingLevels.INFO,
     "is JSON Attribute '" +
       jsonAttributeName +
       "' Defined: " +
@@ -57,7 +57,7 @@ function isJsonArrayEmpty(jsonArrayName, jsonArray) {
   // then return true
   if (jsonArray === undefined) {
     logger.log(
-      LoggingLevels.TRACE,
+      LoggingLevels.INFO,
       "The specified jsonArray parameter with name: '" +
         jsonArrayName +
         "' is undefined or null and is empty"
@@ -70,7 +70,7 @@ function isJsonArrayEmpty(jsonArrayName, jsonArray) {
   // input prameter is incorrect.
   if (!Array.isArray(jsonArray)) {
     logger.log(
-      LoggingLevels.TRACE,
+      LoggingLevels.INFO,
       "The specified jsonArray parameter with name: '" +
         jsonArrayName +
         "' is not an Array and thus is empty"
@@ -86,7 +86,7 @@ function isJsonArrayEmpty(jsonArrayName, jsonArray) {
   }
 
   logger.log(
-    LoggingLevels.TRACE,
+    LoggingLevels.INFO,
     "is JSON Array '" +
       jsonArrayName +
       "' with length=[" +
