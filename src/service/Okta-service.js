@@ -13,13 +13,14 @@ const https = require("https");
 /**
  *takes the body alone passed from controller
  */
-const getUserDetails = (userName, postData) => {
-  let authnLoginLogMsg = "Inside the OKTA service : ";
+const getUserDetails = (userName) => {
+
 
   //logger.log(LoggingLevels.INFO, authnLoginLogMsg);
 
   let hostname = config.OKTA_API_HOSTNAME;
   let path = config.OKTA_getUserDetails_API_PATH + userName;
+  console.log(path)
   // "/credentials/change_password";
 
   // logger.log(LoggingLevels.INFO, authnLoginLogMsg + " " + hostname + path);
@@ -32,11 +33,10 @@ const getUserDetails = (userName, postData) => {
   var options = {
     hostname: `${hostname}`,
     path: `${path}`,
-    method: "GET",
+    method: "POST",
     headers: {
       Authorization: authorization,
-      "Content-Type": "application/json",
-      "Content-Length": postData.length,
+      "Content-Type": "application/json"
     },
     rejectUnauthorized: false,
     requestCert: true,
@@ -66,7 +66,7 @@ const getUserDetails = (userName, postData) => {
         );
       });
     });
-    httpsReq.write(postData);
+    httpsReq.write(userName);
     httpsReq.end();
   });
 };
@@ -78,10 +78,6 @@ const updateOktaProfile = (userName, postData) => {
 
   let hostname = config.OKTA_API_HOSTNAME;
   let path = config.OKTA_getUserDetails_API_PATH+userName;
-  console.log(userName)
-  // "/credentials/change_password";
-
-  // logger.log(LoggingLevels.INFO, authnLoginLogMsg + " " + hostname + path);
 
   // Set the Header Authorization option to the Okta API Token
   let authorization =

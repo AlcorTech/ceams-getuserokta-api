@@ -13,15 +13,12 @@ const oktaUserService = require("../service/Okta-service");
  * @param {*} req the HTTP Request Object
  * @param {*} res the HTTP Response Object
  */
-const getUserDetails = (req, res) => {
-  const oldPassword = req.body.oldPassword;
-  const newPassword = req.body.newPassword;
+const getOktaProfile = (req, res) => {
   const userName = req.body.userName;
 
-  let postData = JSON.stringify({
-    oldPassword: oldPassword,
-    newPassword: newPassword,
-  });
+   let postData=   JSON.stringify({ 
+    
+  })
 
   logger.log(
     LoggingLevels.INFO,
@@ -29,7 +26,7 @@ const getUserDetails = (req, res) => {
   );
 
   oktaUserService
-    .getUserDetails(userName, postData)
+    .updateOktaProfile(userName, postData)
     .then((result) => {
       let getUsersJsonResponse = JSON.parse(result);
       let getUserResponse = {
@@ -91,5 +88,5 @@ const getUserDetails = (req, res) => {
 };
 
 module.exports = {
-  getUserDetails,
+  getOktaProfile,
 };
