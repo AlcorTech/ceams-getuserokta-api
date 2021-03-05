@@ -7,7 +7,7 @@ module.exports = Object.freeze({
   API_NAME: "oktaLogin",
 
   /** Default Express Server Port */
-  EXPRESS_SERVER_PORT_DEFAULT: 3033,
+  EXPRESS_SERVER_PORT_DEFAULT: 3023,
 
   // ###########################################################################
   // #                  SERVICE ROUTE NAMES                                   #
